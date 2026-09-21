@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carta digital — Pachanka Restaurant</title>
+<meta name="description" content="Carta digital de Pachanka Restaurant: entradas, clásicos criollos, criollo fusión, del mar, especiales de fin de semana, postres y bebidas. Toca un plato para verlo en grande.">
+<link rel="canonical" href="https://creative-programming-partners.github.io/pachanka-carta-digital/">
+
+<!-- Vista previa al compartir (WhatsApp, Instagram, Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pachanka Restaurant">
+<meta property="og:title" content="Carta digital — Pachanka Restaurant">
+<meta property="og:description" content="Criollo · fusión en Jesús María, Lima. Mira la carta completa y cada plato en grande.">
+<meta property="og:url" content="https://creative-programming-partners.github.io/pachanka-carta-digital/">
+<meta property="og:locale" content="es_PE">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="theme-color" content="#1E1A17">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E1A17'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='44' font-weight='700' fill='%23D4A25F'%3EP%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>document.documentElement.classList.add('js');if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#carta" data-i18n="a11y.skip">Ir a la carta</a>
+
+<!-- CABECERA -->
+<header class="hdr" id="hdr">
+  <div class="hdr-row">
+    <a class="hdr-logo" href="#top" aria-label="Pachanka, inicio" data-i18n-aria="nav.home"><span class="wm" data-wm></span></a>
+    <div class="hdr-right">
+      <button class="lang js-lang" type="button" aria-label="Ver en inglés" data-i18n-aria="lang.switch"><span data-l="es">ES</span><span data-l="en">EN</span></button>
+      <a class="pill pill--accent" href="https://creative-programming-partners.github.io/pachanka-landing-v2/"><span class="wide" data-i18n="cta.site">Ir a la web</span><span class="narrow" data-i18n="cta.siteShort">Web</span></a>
+    </div>
+  </div>
+  <!-- Categorías: barra pegajosa con indicador -->
+  <nav class="tabs" id="tabs" aria-label="Categorías de la carta" data-i18n-aria="nav.cats"></nav>
+</header>
+
+<main id="top">
+
+<!-- PORTADA -->
+<section class="cover">
+  <div class="cover-in">
+    <span class="wm cover-wm" data-wm aria-hidden="true"></span>
+    <p class="cover-sub" data-i18n="cover.sub">Restaurant &nbsp;·&nbsp; Criollo · Fusión &nbsp;·&nbsp; Jesús María, Lima</p>
+    <h1 class="cover-title"><span class="mask"><span data-i18n="cover.t1">Carta</span></span><span class="mask"><span class="hl" data-i18n="cover.t2">digital</span></span></h1>
+    <p class="cover-lede" data-i18n="cover.lede">Toca el nombre de un plato para verlo en grande, con su foto y su descripción.</p>
+  </div>
+  <div class="cover-tools">
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+      <input type="search" id="q" autocomplete="off" placeholder="Buscar un plato…" aria-label="Buscar un plato en la carta" data-i18n-ph="search.ph" data-i18n-aria="search.aria">
+      <button type="button" class="search-x" id="qClear" hidden aria-label="Borrar búsqueda" data-i18n-aria="search.clear">&times;</button>
+    </label>
+    <p class="cover-note" data-i18n="cover.note">Precios en soles (S/). Las fotos son referenciales.</p>
+  </div>
+</section>
+
+<!-- CARTA -->
+<div class="carta" id="carta"></div>
+<p class="empty" id="empty" hidden data-i18n="search.empty">No encontramos ese plato en la carta.</p>
+
+</main>
+
+<footer class="ftr">
+  <span class="wm ftr-wm" data-wm aria-hidden="true"></span>
+  <p class="ftr-line"><span data-i18n="ftr.addr">Jr. Coronel Camilo Carrillo 169, Jesús María — Lima</span></p>
+  <div class="ftr-links">
+    <a href="https://wa.me/51971969101" target="_blank" rel="noopener" data-i18n="ftr.wa">Reservas por WhatsApp</a>
+    <a href="https://creative-programming-partners.github.io/pachanka-landing-v2/" data-i18n="ftr.site">Web de Pachanka</a>
+    <a href="https://www.instagram.com/pachanka.restaurant/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p class="ftr-fine" data-i18n="ftr.fine">Carta referencial. Precios en soles (S/) e incluyen impuestos. Sujeta a disponibilidad.</p>
+</footer>
+
+<!-- CARTILLA DEL PLATO (se sobrepone a la carta y difumina el fondo) -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-bg" id="sheetBg"></div>
+  <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="sheetName">
+    <button class="sheet-x" id="sheetClose" type="button" aria-label="Cerrar" data-i18n-aria="sheet.close">&times;</button>
+    <!-- La foto entra dando una vuelta: primero el reverso, luego el plato -->
+    <div class="flip" id="flip">
+      <div class="flip-in">
+        <div class="face face--back" aria-hidden="true"><span class="wm" data-wm></span></div>
+        <figure class="face face--front" id="sheetFig">
+          <img id="sheetImg" alt="" width="1200" height="750">
+          <figcaption class="ph">
+            <span class="ph-mark" aria-hidden="true">P</span>
+            <span class="ph-text" data-i18n="sheet.soon">Foto próximamente</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <p class="sheet-cat" id="sheetCat"></p>
+      <h2 class="sheet-name" id="sheetName"></h2>
+      <p class="sheet-desc" id="sheetDesc"></p>
+      <p class="sheet-price" id="sheetPrice"></p>
+      <div class="sheet-nav">
+        <button type="button" class="round" id="prevDish" aria-label="Plato anterior" data-i18n-aria="sheet.prev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg></button>
+        <span class="sheet-count" id="sheetCount"></span>
+        <button type="button" class="round" id="nextDish" aria-label="Plato siguiente" data-i18n-aria="sheet.next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/wordmark.js"></script>
+<script src="js/menu-data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
