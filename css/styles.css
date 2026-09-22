@@ -140,7 +140,8 @@ html[lang="es"] .lang [data-l="es"],html[lang="en"] .lang [data-l="en"]{backgrou
 
 .dish-thumb{position:relative;width:clamp(86px,9vw,112px);aspect-ratio:1;border-radius:14px;overflow:hidden;
   background:var(--char-2) url("../assets/img/grain.png");display:grid;place-items:center;flex:0 0 auto}
-.dish-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out)}
+.dish-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:transform .7s var(--ease-out),opacity .45s ease}
+.dish-thumb.has-photo img{opacity:1}
 .dish-thumb.has-photo .ph-mark{display:none}
 .ph-mark{font-family:var(--f-mark);font-size:clamp(28px,3vw,38px);line-height:1;color:rgba(212,162,95,.5)}
 
@@ -199,7 +200,7 @@ html[lang="es"] .lang [data-l="es"],html[lang="en"] .lang [data-l="en"]{backgrou
   to{transform:none}
 }
 .face{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px 22px 0 0;overflow:hidden}
-.face--front{position:relative;margin:0;aspect-ratio:16/10;background:var(--char-2) url("../assets/img/grain.png");display:grid;place-items:center}
+.face--front{position:relative;margin:0;height:min(54vh,470px);background:var(--char-2) url("../assets/img/grain.png");display:grid;place-items:center}
 .face--front img{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .face--front.has-photo img{display:block}
 .face--front.has-photo .ph{display:none}
@@ -247,7 +248,7 @@ html[lang="es"] .lang [data-l="es"],html[lang="en"] .lang [data-l="en"]{backgrou
   .hdr .pill .narrow{display:inline}
   .tab{padding:13px 11px;font-size:11.5px}
   .dish{grid-template-columns:1fr;gap:14px}
-  .dish-thumb{width:100%;aspect-ratio:16/10;border-radius:12px}
+  .dish-thumb{width:100%;aspect-ratio:4/3;border-radius:12px}
   .dish-head{flex-direction:column;align-items:flex-start;gap:4px}
   .sheet{padding:0}
   .sheet-card{width:100%;max-height:100dvh;height:100dvh;border-radius:0}
@@ -260,3 +261,22 @@ html[lang="es"] .lang [data-l="es"],html[lang="en"] .lang [data-l="en"]{backgrou
   .js .rv,.js .mask > span{opacity:1!important;transform:none!important}
   .sheet-bg,.sheet-card{opacity:1!important;transform:none!important}
 }
+
+/* Con foto vertical, en pantalla ancha la cartilla va a dos columnas */
+@media (min-width:860px){
+  .sheet-card{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:stretch;width:min(1000px,100%)}
+  .flip{height:100%}
+  .flip-in{height:100%}
+  .face{border-radius:22px 0 0 22px}
+  .face--front{height:min(76vh,620px)}
+  .sheet-body{align-self:center;padding-right:clamp(26px,3.4vw,48px)}
+  .sheet-x{background:rgba(30,26,23,.4)}
+}
+
+/* Redes en el pie */
+.social{display:flex;justify-content:center;gap:10px;margin-top:24px}
+.social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(248,242,232,.28);display:grid;place-items:center;line-height:0;
+  transition:background-color .2s ease,border-color .2s ease,transform .2s var(--ease-out)}
+.social svg{width:17px;height:17px;fill:var(--bone);transition:fill .2s ease}
+.social a:hover{background:var(--mustard);border-color:var(--mustard);transform:translateY(-2px)}
+.social a:hover svg{fill:var(--char)}

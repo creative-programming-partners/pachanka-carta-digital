@@ -36,7 +36,7 @@
   function dishCard(d) {
     const n = esc(nameOf(d));
     return `<button class="dish rv" type="button" data-dish="${d.id}" aria-label="${esc(t().see)}: ${n}">
-      <span class="dish-thumb" data-thumb="${d.id}"><span class="ph-mark" aria-hidden="true">P</span></span>
+      <span class="dish-thumb" data-thumb="${d.id}"><span class="ph-mark" aria-hidden="true">P</span>${thumbImg(d)}</span>
       <span class="dish-main">
         <span class="dish-head"><span class="dish-name">${n}</span><span class="dish-price">${money(d.p)}</span></span>
         <span class="dish-desc">${esc(descOf(d))}</span>
@@ -87,18 +87,18 @@
   /* ---------- Fotos: si aún no existe el archivo, queda el marcador ---------- */
   // Cada foto va en assets/platos/<id de plato>.jpg — al subirla aparece sola.
   const missing = new Set();
-  function photo(id, into, alt) {
-    if (missing.has(id)) return;
-    const img = new Image();
-    img.alt = alt || '';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.onload = () => { into.appendChild(img); into.classList.add('has-photo'); };
-    img.onerror = () => missing.add(id);
-    img.src = 'assets/platos/' + id + '.jpg';
-  }
+  // La imagen va dentro de la ficha para que el navegador la cargue al entrar en pantalla
+  const thumbImg = d => missing.has(d.id) ? ''
+    : `<img src="assets/platos/${d.id}.jpg" alt="" loading="lazy" decoding="async">`;
   function loadThumbs() {
-    $$('[data-thumb]').forEach(el => photo(el.dataset.thumb, el, ''));
+    $$('.dish-thumb img').forEach(img => {
+      const box = img.parentElement, id = box.dataset.thumb;
+      const ok = () => box.classList.add('has-photo');
+      const no = () => { missing.add(id); img.remove(); };
+      if (img.complete) return img.naturalWidth ? ok() : no();
+      img.addEventListener('load', ok, { once: true });
+      img.addEventListener('error', no, { once: true });
+    });
   }
 
   /* ---------- Revelado al hacer scroll ---------- */
