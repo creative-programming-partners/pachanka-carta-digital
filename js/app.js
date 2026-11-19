@@ -129,14 +129,21 @@
     $$('.cat').forEach(s => spy.observe(s));
   }
 
+  // Lleva a una categoría dejando el título justo debajo de la cabecera pegajosa
+  function goToCat(id, smooth) {
+    const sec = $('#cat-' + id);
+    if (!sec) return false;
+    const top = sec.getBoundingClientRect().top + scrollY - ($('#hdr').offsetHeight + 12);
+    // 'instant' y no 'auto': con scroll-behavior:smooth en el CSS, 'auto' también desplaza suave
+    scrollTo({ top, behavior: smooth && !reduce ? 'smooth' : 'instant' });
+    return true;
+  }
+
   tabsEl.addEventListener('click', e => {
     const a = e.target.closest('.tab');
     if (!a) return;
     e.preventDefault();
-    const sec = $('#cat-' + a.dataset.cat);
-    if (!sec) return;
-    const top = sec.getBoundingClientRect().top + scrollY - ($('#hdr').offsetHeight + 12);
-    scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
+    goToCat(a.dataset.cat, true);
   });
 
   /* ---------- Buscador ---------- */
@@ -175,7 +182,12 @@
     sImg.alt = '';
     if (!missing.has(id)) {
       sImg.alt = t().photoOf + ' ' + nameOf(d);
-      sImg.onload = () => fig.classList.add('has-photo');
+      // La foto se muestra recién decodificada: si aparece a medio decodificar durante la vuelta,
+      // el navegador la decodifica y la pinta en plena animación y se pierden cuadros
+      sImg.onload = () => {
+        const ready = sImg.decode ? sImg.decode().catch(() => {}) : Promise.resolve();
+        ready.then(() => { if (current === id) fig.classList.add('has-photo'); });
+      };
       sImg.onerror = () => { missing.add(id); fig.classList.remove('has-photo'); };
       sImg.src = 'assets/platos/' + id + '.jpg';
     }
@@ -261,4 +273,8 @@
 
   const h = location.hash.match(/^#plato-(.+)$/);
   if (h && byId.has(h[1]) && byId.get(h[1]).des) setTimeout(() => open(h[1]), 400);
+  // Enlace a una categoría (#cat-mar, #cat-fusion…), por ejemplo desde los botones de la landing.
+  // Las secciones se dibujan con JS, así que el salto nativo del ancla no las encuentra: se hace aquí
+  const c = location.hash.match(/^#cat-(.+)$/);
+  if (c) requestAnimationFrame(() => goToCat(c[1], false));
 })();
