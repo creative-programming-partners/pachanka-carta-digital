@@ -5,7 +5,7 @@ con la carta impresa vigente: *CARTA PACHANKA ACTUALIZADA*.
 
 **Ver en vivo:** https://creative-programming-partners.github.io/pachanka-carta-digital/
 
-**Landing del restaurante:** https://creative-programming-partners.github.io/pachanka-landing-v2/
+**Landing del restaurante:** https://creative-programming-partners.github.io/pachanka-landing-v3/
 
 > Maqueta de presentación para el cliente. Los platos, las descripciones y los precios
 > son los de su carta actual; las fotos son referenciales.
