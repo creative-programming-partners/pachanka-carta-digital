@@ -12,10 +12,11 @@
   const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
   let lang = 'es';
-  try { const s = localStorage.getItem('pk-lang'); if (s === 'es' || s === 'en') lang = s; } catch (e) {}
+  // El idioma se comparte con la landing (mismo dominio): si eligieron francés allá, la carta abre en francés
+  try { const s = localStorage.getItem('pk-lang'); if (s === 'es' || s === 'en' || s === 'fr') lang = s; } catch (e) {}
   const t = () => PK_I18N.JS[lang];
   const nameOf = d => d[lang] || d.es;
-  const descOf = d => (lang === 'en' ? d.den : d.des) || '';
+  const descOf = d => (lang === 'en' ? d.den : lang === 'fr' ? d.dfr : d.des) || d.des || '';
 
   $$('[data-wm]').forEach(el => PK_WM.build(el));
 
@@ -259,14 +260,37 @@
     lang = next;
     try { localStorage.setItem('pk-lang', lang); } catch (e) {}
     PK_I18N.apply(lang);
+    pressLang();
     render(q.value);
     startSpy();
     if (current) fill(current);
   }
-  $$('.js-lang').forEach(b => b.addEventListener('click', () => setLang(lang === 'es' ? 'en' : 'es')));
+  // Selector ES · EN · FR
+  const pressLang = () => $$('.lang [data-l]').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === lang));
+  $$('.lang [data-l]').forEach(b => b.addEventListener('click', () => { if (b.dataset.l !== lang) setLang(b.dataset.l); }));
+
+  /* ---------- Tema claro u oscuro según la hora de Lima ---------- */
+  // El <head> ya puso el tema al cargar. Aquí se revisa cada minuto: a las 6 p.m. pasa a oscuro y a las 6 a.m. a claro,
+  // con un fundido corto. Con ?tema=claro o ?tema=oscuro en la dirección queda fijo (para mostrar uno a mano).
+  const forcedTheme = /^(claro|oscuro)$/.test(new URLSearchParams(location.search).get('tema') || '');
+  const limaHour = () => +new Intl.DateTimeFormat('en-US', { timeZone: 'America/Lima', hour: 'numeric', hourCycle: 'h23' }).format(new Date());
+  function syncTheme() {
+    if (forcedTheme) return;
+    const h = limaHour(), th = h >= 6 && h < 18 ? 'light' : 'dark';
+    const root = document.documentElement;
+    if (root.dataset.theme === th) return;
+    root.classList.add('theme-fade');
+    root.dataset.theme = th;
+    const meta = $('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', th === 'light' ? '#f5f0e7' : '#110f0f');
+    setTimeout(() => root.classList.remove('theme-fade'), 700);
+  }
+  setTimeout(() => { syncTheme(); setInterval(syncTheme, 60000); }, (60 - new Date().getSeconds()) * 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) syncTheme(); });
 
   /* ---------- Arranque ---------- */
   PK_I18N.apply(lang);
+  pressLang();
   render('');
   startSpy();
   document.documentElement.classList.add('ready');
