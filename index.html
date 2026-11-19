@@ -15,15 +15,28 @@
 <meta property="og:url" content="https://creative-programming-partners.github.io/pachanka-carta-digital/">
 <meta property="og:locale" content="es_PE">
 <meta property="og:locale:alternate" content="en_US">
-<meta name="theme-color" content="#1E1A17">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E1A17'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='44' font-weight='700' fill='%23D4A25F'%3EP%3C/text%3E%3C/svg%3E">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="theme-color" content="#110f0f">
+<script>
+/* Tema según la hora de Lima: claro de 6 a.m. a 6 p.m. y oscuro desde las 6 p.m.
+   Corre antes de pintar la página para que no se vea el otro tema un instante.
+   Para mostrar uno a mano: ?tema=claro o ?tema=oscuro */
+(function () {
+  var q = new URLSearchParams(location.search).get('tema');
+  var h = +new Intl.DateTimeFormat('en-US', { timeZone: 'America/Lima', hour: 'numeric', hourCycle: 'h23' }).format(new Date());
+  var t = q === 'claro' ? 'light' : q === 'oscuro' ? 'dark' : (h >= 6 && h < 18 ? 'light' : 'dark');
+  document.documentElement.setAttribute('data-theme', t);
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'light' ? '#f5f0e7' : '#110f0f');
+})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23110f0f'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='44' font-weight='700' fill='%23DFA159'%3EP%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script>document.documentElement.classList.add('js');if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=4">
 </head>
 <body>
 
@@ -34,8 +47,8 @@
   <div class="hdr-row">
     <a class="hdr-logo" href="#top" aria-label="Pachanka, inicio" data-i18n-aria="nav.home"><span class="wm" data-wm></span></a>
     <div class="hdr-right">
-      <button class="lang js-lang" type="button" aria-label="Ver en inglés" data-i18n-aria="lang.switch"><span data-l="es">ES</span><span data-l="en">EN</span></button>
-      <a class="pill pill--accent" href="https://creative-programming-partners.github.io/pachanka-landing-v2/"><span class="wide" data-i18n="cta.site">Ir a la web</span><span class="narrow" data-i18n="cta.siteShort">Web</span></a>
+      <div class="lang" role="group" aria-label="Idioma" data-i18n-aria="lang.group"><button type="button" data-l="es" lang="es" aria-label="Español">ES</button><button type="button" data-l="en" lang="en" aria-label="English">EN</button><button type="button" data-l="fr" lang="fr" aria-label="Français">FR</button></div>
+      <a class="pill pill--hdr" href="https://creative-programming-partners.github.io/pachanka-landing-v2/"><span class="wide" data-i18n="cta.site">Ir a la web</span><span class="narrow" data-i18n="cta.siteShort">Web</span></a>
     </div>
   </div>
   <!-- Categorías: barra pegajosa con indicador -->
@@ -48,7 +61,7 @@
 <section class="cover">
   <div class="cover-in">
     <span class="wm cover-wm" data-wm aria-hidden="true"></span>
-    <p class="cover-sub" data-i18n="cover.sub">Restaurant &nbsp;·&nbsp; Criollo · Fusión &nbsp;·&nbsp; Jesús María, Lima</p>
+    <p class="cover-sub"><span class="dots" aria-hidden="true"><i style="--c:var(--ochre)"></i><i style="--c:var(--sage)"></i><i style="--c:var(--coral)"></i><i style="--c:var(--teal)"></i></span><span data-i18n="cover.sub">Restaurant &nbsp;·&nbsp; Criollo · Fusión &nbsp;·&nbsp; Jesús María, Lima</span></p>
     <h1 class="cover-title"><span class="mask"><span data-i18n="cover.t1">Carta</span></span><span class="mask"><span class="hl" data-i18n="cover.t2">digital</span></span></h1>
     <p class="cover-lede" data-i18n="cover.lede">Toca el nombre de un plato para verlo en grande, con su foto y su descripción.</p>
   </div>
@@ -84,7 +97,7 @@
   <p class="ftr-fine" data-i18n="ftr.fine">Carta referencial. Precios en soles (S/) e incluyen impuestos. Sujeta a disponibilidad.</p>
 </footer>
 
-<!-- CARTILLA DEL PLATO (se sobrepone a la carta y difumina el fondo) -->
+<!-- CARTILLA DEL PLATO (se sobrepone a la carta y oscurece el fondo) -->
 <div class="sheet" id="sheet" hidden>
   <div class="sheet-bg" id="sheetBg"></div>
   <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="sheetName">
@@ -94,7 +107,7 @@
       <div class="flip-in">
         <div class="face face--back" aria-hidden="true"><span class="wm" data-wm></span></div>
         <figure class="face face--front" id="sheetFig">
-          <img id="sheetImg" alt="" width="1200" height="750">
+          <img id="sheetImg" alt="" width="1200" height="750" decoding="async">
           <figcaption class="ph">
             <span class="ph-mark" aria-hidden="true">P</span>
             <span class="ph-text" data-i18n="sheet.soon">Foto próximamente</span>
@@ -117,8 +130,8 @@
 </div>
 
 <script src="js/wordmark.js"></script>
-<script src="js/menu-data.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/app.js"></script>
+<script src="js/menu-data.js?v=2"></script>
+<script src="js/i18n.js?v=2"></script>
+<script src="js/app.js?v=4"></script>
 </body>
 </html>
