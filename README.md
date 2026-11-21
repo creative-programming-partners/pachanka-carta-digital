@@ -25,13 +25,14 @@ con la carta impresa vigente: *CARTA PACHANKA ACTUALIZADA*.
 
 ## Las fotos
 
-Todavía no hay fotos: cada plato muestra un marcador con la "P" y "Foto próximamente".
+**25 de los 31 platos ya se ven con su foto**, del archivo del restaurante. Los 6 que
+faltan muestran un marcador con la "P" y "Foto próximamente".
 
-Para publicarlas basta con subir el archivo a `assets/platos/` con el nombre del plato
-(por ejemplo `lomo-saltado.jpg`). No hay que tocar código. La lista completa de nombres
+Para publicar una basta con subir el archivo a `assets/platos/` con el nombre del plato
+(por ejemplo `lomo-saltado.jpg`). No hay que tocar código. La lista de los que faltan
 está en [`assets/platos/README.md`](assets/platos/README.md).
 
-- Formato `.jpg`, proporción **16:10**, 1600 × 1000 px, menos de 400 KB
+- Formato `.jpg`, proporción **3:4 vertical**, 800 × 1067 px, alrededor de 150 KB
 
 ## Estructura
 
@@ -60,6 +61,11 @@ HTML, CSS y JavaScript sin paso de compilación ni dependencias: las animaciones
 sobre `transform` y `opacity`, y el revelado usa `IntersectionObserver`.
 
 ## Verlo en local
+
+En Windows, doble clic en **`ver-en-local.cmd`**: abre el navegador con la carta
+y deja el servidor corriendo (cierra la ventana negra para apagarlo).
+
+A mano, desde la carpeta del proyecto:
 
 ```bash
 python -m http.server 8000
