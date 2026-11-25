@@ -49,7 +49,7 @@ PK_TEXTOS.fr = {
   // Textos que arma el JavaScript
   mensajes: {
     title: 'Carte — Pachanka Restaurant, cuisine criolla et fusion à Jesús María',
-    desc: 'Carte digitale de Pachanka Restaurant : entrées, classiques criollos, criollo fusion, produits de la mer, spécialités du week-end, desserts et boissons. Touchez un plat pour le voir en grand.',
+    desc: 'Carte de Pachanka, restaurant criollo et fusion à Jesús María, Lima : entrées, classiques criollos, produits de la mer, spécialités du week-end, desserts et boissons.',
     see: 'Voir le plat', of: 'sur', photoOf: 'Photo de',
     results: n => n === 1 ? '1 plat trouvé' : n + ' plats trouvés'
   }

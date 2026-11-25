@@ -50,7 +50,7 @@ PK_TEXTOS.en = {
   // Textos que arma el JavaScript
   mensajes: {
     title: 'Menu — Pachanka Restaurant, criollo and fusion food in Jesús María',
-    desc: 'Pachanka Restaurant digital menu: starters, criollo classics, criollo fusion, seafood, weekend specials, desserts and drinks. Tap a dish to see it big.',
+    desc: 'Menu of Pachanka, a criollo and fusion restaurant in Jesús María, Lima: starters, criollo classics, seafood, weekend specials, desserts and drinks.',
     see: 'See the dish', of: 'of', photoOf: 'Photo of',
     results: n => n === 1 ? '1 dish found' : n + ' dishes found'
   }

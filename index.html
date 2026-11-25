@@ -21,7 +21,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Pachanka Restaurant">
 <meta property="og:title" content="Carta digital — Pachanka Restaurant">
-<meta property="og:description" content="Criollo · fusión en Jesús María, Lima. Mira la carta completa y cada plato en grande.">
+<meta property="og:description" content="La carta del restaurante Pachanka, criollo y fusión en Jesús María, Lima. Mira cada plato en grande, con su foto y su precio.">
 <meta property="og:url" content="https://carta.pachankarestaurant.com/">
 <meta property="og:image" content="https://carta.pachankarestaurant.com/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -49,32 +49,60 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<!-- La carta, para Google -->
+<!-- Ficha para los buscadores. El restaurante es la misma entidad que en la landing
+     (mismo @id), para que Google, Bing, Yandex y los asistentes entiendan que esta
+     carta es la de Pachanka y no otra web suelta. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Menu",
-  "name": "Carta de Pachanka Restaurant",
-  "url": "https://carta.pachankarestaurant.com/",
-  "inLanguage": ["es", "en", "fr"],
-  "offers": { "@type": "Offer", "priceCurrency": "PEN" },
-  "provider": {
-    "@type": "Restaurant",
-    "name": "Pachanka Restaurant",
-    "alternateName": ["Pachanka", "Restaurante Pachanka", "Pachanka Restaurante"],
-    "url": "https://pachankarestaurant.com/",
-    "telephone": "+51 971 969 101",
-    "servesCuisine": ["Peruana", "Criolla", "Fusión"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Jr. Coronel Camilo Carrillo 169",
-      "addressLocality": "Jesús María",
-      "addressRegion": "Lima",
-      "postalCode": "15076",
-      "addressCountry": "PE"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://carta.pachankarestaurant.com/#web",
+      "url": "https://carta.pachankarestaurant.com/",
+      "name": "Carta de Pachanka Restaurant",
+      "inLanguage": ["es-PE", "en", "fr"],
+      "publisher": { "@id": "https://pachankarestaurant.com/#restaurante" }
     },
-    "acceptsReservations": "https://wa.me/51971969101"
-  }
+    {
+      "@type": "Menu",
+      "@id": "https://carta.pachankarestaurant.com/#carta",
+      "name": "Carta de Pachanka Restaurant",
+      "description": "Entradas, clásicos criollos, criollo fusión, del mar, especiales de fin de semana, postres y bebidas.",
+      "url": "https://carta.pachankarestaurant.com/",
+      "inLanguage": ["es", "en", "fr"],
+      "offers": { "@type": "Offer", "priceCurrency": "PEN" },
+      "provider": { "@id": "https://pachankarestaurant.com/#restaurante" }
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://pachankarestaurant.com/#restaurante",
+      "name": "Pachanka Restaurant",
+      "alternateName": ["Pachanka", "Restaurante Pachanka", "Pachanka Restaurante"],
+      "url": "https://pachankarestaurant.com/",
+      "telephone": "+51 971 969 101",
+      "priceRange": "S/ 5 – S/ 55",
+      "currenciesAccepted": "PEN",
+      "servesCuisine": ["Peruana", "Criolla", "Fusión"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jr. Coronel Camilo Carrillo 169",
+        "addressLocality": "Jesús María",
+        "addressRegion": "Lima",
+        "postalCode": "15076",
+        "addressCountry": "PE"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": -12.0738088, "longitude": -77.0379397 },
+      "hasMap": "https://maps.google.com/?cid=7583902838810946393",
+      "acceptsReservations": "https://wa.me/51971969101",
+      "hasMenu": { "@id": "https://carta.pachankarestaurant.com/#carta" },
+      "sameAs": [
+        "https://www.instagram.com/pachanka.restaurant/",
+        "https://www.facebook.com/pachanka.restaurant/",
+        "https://www.tiktok.com/@pachanka.restaura"
+      ]
+    }
+  ]
 }
 </script>
 
