@@ -9,21 +9,12 @@ export const faltantes = new Set();
 /** Ruta de la foto de un plato. */
 export const rutaFoto = id => 'assets/platos/' + id + '.jpg';
 
-/** Las primeras miniaturas se ven apenas se abre la carta: se piden enseguida y con prioridad.
-    Las demás esperan a acercarse a la pantalla. */
-const PRIMERAS = 4;
-let enEstaPintada = 0;
-
-/** La imagen va dentro de la ficha. */
-export const etiquetaMiniatura = d => {
-  if (faltantes.has(d.id)) return '';
-  const pronto = enEstaPintada++ < PRIMERAS;
-  return `<img src="${rutaFoto(d.id)}" alt="" ${pronto ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
-};
+/** La imagen va dentro de la ficha para que el navegador la cargue al entrar en pantalla. */
+export const etiquetaMiniatura = d => faltantes.has(d.id) ? ''
+  : `<img src="${rutaFoto(d.id)}" alt="" loading="lazy" decoding="async">`;
 
 /** Marca cada miniatura según cargue o falle. Se llama después de pintar la carta. */
 export function cargarMiniaturas() {
-  enEstaPintada = 0;
   $$('.dish-thumb img').forEach(img => {
     const box = img.parentElement, id = box.dataset.thumb;
     const ok = () => box.classList.add('has-photo');
