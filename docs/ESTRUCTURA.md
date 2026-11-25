@@ -180,9 +180,9 @@ Archivos que lee Cloudflare en la raíz:
 | `robots.txt` · `sitemap.xml` | para los buscadores |
 | `site.webmanifest` + `favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | el ícono del sitio |
 
-GitHub Pages sigue encendido con la dirección vieja: un script al inicio del `<head>`
-manda a quien entre por ahí a la dirección nueva, conservando el `#plato-…` o el
-`#cat-…`, porque hay códigos QR impresos que apuntan a `github.io`.
+El código QR de la carta no apunta a esta dirección, sino al acortador de la casa
+(`qr.cppcstudio.com/pachanka-menu`), que redirige aquí. Si algún día cambia el dominio,
+se cambia ahí y los QR impresos siguen valiendo.
 
 ## 🔗 Relacionado
 
