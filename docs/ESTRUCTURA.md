@@ -164,6 +164,26 @@ que el navegador no sirva la versión guardada. Hoy va por `v=5`.
 Cuando se agrega, renombra o mueve un archivo de `contenido/`, `css/` o `js/`, **este
 documento se actualiza en el mismo commit**.
 
+## Publicación
+
+No hay paso de compilación. **Cloudflare** publica la rama `main` desde la carpeta
+principal (proyecto `pachanka-carta`, sin comando de build, carpeta de salida `/`). Cada
+cambio guardado en `main` aparece en https://carta.pachankarestaurant.com en uno o dos
+minutos.
+
+Archivos que lee Cloudflare en la raíz:
+
+| Archivo | Para qué |
+| --- | --- |
+| `_headers` | `noindex` para la documentación; `nosniff` y política de referencia para todo |
+| `404.html` | la página de dirección equivocada. **Sin ella**, Cloudflare respondería cualquier dirección inventada con la portada y un código 200, y Google lo tomaría como contenido duplicado |
+| `robots.txt` · `sitemap.xml` | para los buscadores |
+| `site.webmanifest` + `favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | el ícono del sitio |
+
+GitHub Pages sigue encendido con la dirección vieja: un script al inicio del `<head>`
+manda a quien entre por ahí a la dirección nueva, conservando el `#plato-…` o el
+`#cat-…`, porque hay códigos QR impresos que apuntan a `github.io`.
+
 ## 🔗 Relacionado
 
 - `README.md` — qué es el proyecto y dónde se cambia cada cosa
