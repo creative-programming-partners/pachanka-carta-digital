@@ -36,7 +36,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script>document.documentElement.classList.add('js');if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
-<link rel="stylesheet" href="css/styles.css?v=4">
+<!-- Estilos: un archivo por sección, en orden. Si dos reglas chocan, gana la del número mayor.
+     Mapa completo en docs/ESTRUCTURA.md -->
+<link rel="stylesheet" href="css/01-base.css?v=5">
+<link rel="stylesheet" href="css/02-marca-y-botones.css?v=5">
+<link rel="stylesheet" href="css/03-cabecera-y-categorias.css?v=5">
+<link rel="stylesheet" href="css/04-portada-y-buscador.css?v=5">
+<link rel="stylesheet" href="css/05-carta.css?v=5">
+<link rel="stylesheet" href="css/06-cartilla.css?v=5">
+<link rel="stylesheet" href="css/07-pie.css?v=5">
+<link rel="stylesheet" href="css/08-celular-y-tablet.css?v=5">
+<link rel="stylesheet" href="css/09-tema-claro.css?v=5">
+<link rel="stylesheet" href="css/10-movimiento-reducido.css?v=5">
 </head>
 <body>
 
@@ -129,9 +140,11 @@
   </div>
 </div>
 
-<script src="js/wordmark.js"></script>
-<script src="js/menu-data.js?v=2"></script>
-<script src="js/i18n.js?v=2"></script>
-<script src="js/app.js?v=4"></script>
+<!-- Primero el contenido (lo que dice la carta), después el programa que la pinta -->
+<script src="contenido/carta.js?v=5"></script>
+<script src="contenido/textos-es.js?v=5"></script>
+<script src="contenido/textos-en.js?v=5"></script>
+<script src="contenido/textos-fr.js?v=5"></script>
+<script type="module" src="js/main.js?v=5"></script>
 </body>
 </html>

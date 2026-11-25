@@ -1,0 +1,19 @@
+/* =========================================================
+   07 · PIE
+   Direccion, enlaces y redes.
+   ========================================================= */
+.ftr{padding:clamp(48px,6vw,80px) var(--side) 40px;border-top:1px solid var(--line);background:var(--bg-2);text-align:center}
+.ftr-wm{font-size:clamp(38px,4.6vw,58px)}
+.ftr-line{margin:18px 0 0;font-size:14.5px;color:var(--muted)}
+.ftr-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:22px}
+.ftr-links a{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .2s ease}
+.ftr-links a:hover{color:var(--gold-ink)}
+.ftr-fine{margin:30px 0 0;font-size:12px;line-height:1.8;color:rgba(var(--text-rgb),.42)}
+
+/* Redes en el pie */
+.social{display:flex;justify-content:center;gap:10px;margin-top:24px}
+.social a{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;line-height:0;
+  transition:background-color .2s ease,border-color .2s ease,transform .2s var(--ease-out)}
+.social svg{width:17px;height:17px;fill:var(--cream);transition:fill .2s ease}
+.social a:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+.social a:hover svg{fill:var(--on-gold)}

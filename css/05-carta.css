@@ -1,0 +1,54 @@
+/* =========================================================
+   05 · CARTA
+   Las categorias, las fichas de plato y las listas simples (guarniciones y bebidas),
+   mas el revelado de las fichas al hacer scroll.
+   ========================================================= */
+.carta{padding:0 var(--side) clamp(60px,8vw,110px)}
+.cat{padding:clamp(46px,6vw,80px) 0 0;scroll-margin-top:calc(var(--hdr-h) + 16px)}
+.cat-head{margin:0 0 clamp(22px,3vw,34px)}
+.grp{margin:34px 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+
+/* Fichas de plato: tarjeta carbón como las de la landing; el nombre y la descripción mandan */
+.dishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,430px),1fr));gap:14px}
+.dish{position:relative;display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,1.6vw,22px);width:100%;
+  padding:clamp(14px,1.6vw,20px);text-align:left;border:1px solid var(--line);border-radius:14px;
+  background:var(--card);transition:border-color .25s ease,background-color .25s ease,transform .3s var(--ease-out)}
+@media (hover:hover) and (pointer:fine){
+  .dish:hover{background:var(--elev);border-color:rgba(223,161,89,.42);transform:translateY(-3px)}
+  .dish:hover .dish-name{color:var(--gold-ink)}
+  .dish:hover .dish-thumb img{transform:scale(1.07)}
+  .dish:hover .dish-more{opacity:1;transform:none}
+}
+.dish:active{transform:scale(.99)}
+
+.dish-thumb{position:relative;width:clamp(86px,9vw,112px);aspect-ratio:1;border-radius:10px;overflow:hidden;
+  background:var(--elev) url("../assets/img/grain.png");display:grid;place-items:center;flex:0 0 auto}
+.dish-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:transform .7s var(--ease-out),opacity .45s ease}
+.dish-thumb.has-photo img{opacity:1}
+.dish-thumb.has-photo .ph-mark{display:none}
+.ph-mark{font-family:var(--f-mark);font-size:clamp(28px,3vw,38px);line-height:1;color:rgba(223,161,89,.45)}
+
+.dish-main{display:flex;flex-direction:column;gap:7px;min-width:0}
+.dish-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.dish-name{font-family:var(--f-serif);font-variation-settings:"SOFT" 50;font-size:clamp(19px,1.55vw,23px);font-weight:600;
+  line-height:1.18;letter-spacing:-.005em;color:var(--cream);transition:color .2s ease}
+.dish-price{flex:0 0 auto;font-size:clamp(16px,1.3vw,19px);font-weight:600;color:var(--gold-ink);font-variant-numeric:tabular-nums}
+.dish-desc{margin:0;font-size:clamp(14.5px,1.05vw,16px);line-height:1.6;color:var(--muted)}
+.dish-more{display:inline-flex;align-items:center;gap:6px;margin-top:2px;font-size:12px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold-ink);opacity:.6;transform:translateX(-4px);
+  transition:opacity .25s ease,transform .25s var(--ease-out)}
+.dish-more svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Listas simples: guarniciones, bebidas (como la carta de la landing) */
+.rows{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:0 clamp(24px,4vw,64px)}
+.row{display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px dashed var(--line-2)}
+.row-name{font-size:16.5px;color:var(--cream)}
+.row-dots{flex:1;min-width:14px;border-bottom:2px dotted var(--line-2);transform:translateY(-4px)}
+.row-price{font-weight:600;color:var(--gold-ink);font-variant-numeric:tabular-nums}
+
+.empty{margin:0;padding:0 var(--side) 90px;font-size:16px;color:var(--muted)}
+
+/* Revelado al hacer scroll */
+.js .rv{opacity:0;transform:translate3d(0,22px,0);transition:opacity .7s var(--ease-out),transform .8s var(--ease-out);
+  transition-delay:calc(var(--i,0) * 55ms)}
+.js .rv.is-in{opacity:1;transform:none}

@@ -1,0 +1,26 @@
+/* =========================================================
+   09 · TEMA CLARO (de dia, de 6 a.m. a 6 p.m. hora de Lima)
+   El <head> pone data-theme segun la hora de Lima y js/tema.js lo revisa cada minuto.
+   Los colores de la marca estan pensados para el carbon: sobre crema el dorado y las
+   letras pastel del logo se pierden (1.5 a 2:1). De dia van los mismos tonos, mas hondos:
+   dorado de relleno #c97718 (3:1 contra el fondo), dorado de texto #97561a (5:1).
+   ========================================================= */
+html[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f5f0e7; --bg-2:#ece5d8; --card:#fffdf9; --elev:#e7dece;
+  --cream:#1f1b16;             /* el "texto principal": de día es tinta oscura */
+  --muted:#5e554a;
+  --text-rgb:31,27,22;
+  --gold:#c97718; --gold-2:#b5680f;
+  --gold-ink:#97561a;
+  --bronze:#b08550;
+  --shade-rgb:245,240,231;
+  /* Letras del logo: el mismo tono, más hondo para que no se laven sobre el crema */
+  --ochre:#b9853d; --sage:#5e8f72; --blush:#d27f68; --coral:#cf5a4d;
+  --butter:#c9952f; --teal:#3f7180; --brick:#9e4a46; --sand:#a8875c;
+}
+html[data-theme="light"] .pill--hdr{border-color:var(--gold-ink)}
+html[data-theme="light"] .brush{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 60' preserveAspectRatio='none'%3E%3Cpath d='M6 12 C50 5 96 10 150 6 S258 3 293 9 L284 19 L297 27 L287 37 L295 49 C236 55 182 49 120 53 S34 57 8 51 L15 41 L3 31 L13 22 Z' fill='%23C97718'/%3E%3C/svg%3E")}
+/* Cambio de tema con la página abierta: un fundido corto de colores en lugar de un salto */
+html.theme-fade,html.theme-fade *,html.theme-fade *::before,html.theme-fade *::after{
+  transition:background-color .6s var(--ease-out),color .6s var(--ease-out),border-color .6s var(--ease-out),fill .6s var(--ease-out),stroke .6s var(--ease-out)!important}

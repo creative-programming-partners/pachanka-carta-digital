@@ -1,0 +1,10 @@
+/* =========================================================
+   10 · MOVIMIENTO REDUCIDO
+   Para quien pide menos animacion en su sistema. El ultimo archivo: pisa a todos.
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv,.js .mask > span{opacity:1!important;transform:none!important}
+  .sheet-bg,.sheet-card{opacity:1!important;transform:none!important}
+}

@@ -1,0 +1,31 @@
+/* =========================================================
+   04 · PORTADA Y BUSCADOR
+   Lo primero que se ve: el nombre, el titular que sube por lineas y el buscador.
+   ========================================================= */
+.cover{padding:clamp(48px,8vw,96px) var(--side) clamp(30px,4vw,44px);border-bottom:1px solid var(--line)}
+.cover-in{max-width:960px}
+.cover-wm{font-size:clamp(46px,7vw,86px)}
+.cover-sub{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin:16px 0 clamp(20px,3.4vw,32px);
+  font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
+.cover-title{margin:0;font-family:var(--f-serif);font-variation-settings:"SOFT" 50;font-size:clamp(46px,6vw,92px);font-weight:600;
+  line-height:1.02;letter-spacing:-.02em;color:var(--cream)}
+.cover-title .hl{color:var(--gold-ink)}
+.mask{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.mask > span{display:block}
+.js .mask > span{transform:translate3d(0,108%,0)}
+.ready .mask > span{transform:none;transition:transform 1.1s var(--ease-out)}
+.ready .mask:nth-child(2) > span{transition-delay:.1s}
+.cover-lede{margin:24px 0 0;max-width:46ch;font-size:clamp(15.5px,1.15vw,17.5px);line-height:1.65;color:var(--muted)}
+
+.cover-tools{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:clamp(28px,4vw,44px)}
+.search{position:relative;display:flex;align-items:center;gap:10px;flex:1 1 320px;max-width:440px;
+  height:50px;padding:0 14px 0 18px;border:1px solid var(--line-2);border-radius:999px;
+  background:rgba(var(--text-rgb),.04);transition:border-color .2s ease,background-color .2s ease}
+.search:focus-within{border-color:var(--gold);background:rgba(var(--text-rgb),.07)}
+.search svg{width:19px;height:19px;flex:0 0 auto;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round}
+.search input{flex:1;min-width:0;height:100%;border:0;background:none;color:var(--cream);font-size:15.5px;outline:none}
+.search input::placeholder{color:rgba(var(--text-rgb),.42)}
+.search input::-webkit-search-cancel-button{display:none}
+.search-x{width:30px;height:30px;border-radius:50%;font-size:22px;line-height:1;color:var(--muted)}
+.search-x:hover{color:var(--cream);background:rgba(var(--text-rgb),.1)}
+.cover-note{margin:0;font-size:12.5px;color:var(--muted)}

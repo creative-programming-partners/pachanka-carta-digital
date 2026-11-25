@@ -37,23 +37,36 @@ está en [`assets/platos/README.md`](assets/platos/README.md).
 ## Estructura
 
 ```
-index.html          Página
-css/styles.css      Estilos
-js/menu-data.js     La carta (español e inglés) — mismo archivo que la landing
-js/i18n.js          Traducciones al inglés
-js/wordmark.js      Logotipo de las ocho letras
-js/app.js           Carta, buscador, idioma, cartilla del plato y animaciones
-assets/platos/      Fotos de los platos (una por plato, con su nombre)
+index.html          Página: estructura, textos en español y enlaces
+contenido/          Lo que dice la carta (lo que se edita seguido)
+  carta.js            Categorías, platos, precios y descripciones (es · en · fr)
+  textos-es|en|fr.js  Traducciones de la página
+css/                Un archivo por sección, numerados (01-base … 10-movimiento-reducido)
+js/                 Un módulo por comportamiento + main.js, que los arma
+assets/platos/      Fotos de los platos (una por plato, con el nombre de su id)
+docs/ESTRUCTURA.md  Mapa completo: dónde va cada cosa y por qué
 ```
 
-## Cambiar la carta
+Mapa detallado en [`docs/ESTRUCTURA.md`](docs/ESTRUCTURA.md).
 
-Todo está en `js/menu-data.js`: categorías, grupos y platos con su precio y descripción
-en los dos idiomas. Un plato **con descripción** se muestra como ficha y abre cartilla;
-uno **sin descripción** (guarniciones, bebidas) se muestra como línea de lista.
+## Dónde se cambia cada cosa
 
-Cuando cambie un precio, conviene copiar el mismo archivo a la landing
-(`pachanka-landing-v2/js/menu-data.js`) para que las dos webs digan lo mismo.
+| Para… | Archivo |
+| --- | --- |
+| Un precio, un nombre, una descripción | `contenido/carta.js` |
+| Agregar o quitar un plato | `contenido/carta.js` |
+| Subir la foto de un plato | `assets/platos/<id>.jpg` — nada de código |
+| Un texto de la página en español | `index.html` |
+| Un texto en inglés o francés | `contenido/textos-en.js` · `contenido/textos-fr.js` |
+| Colores y tipografías | `css/01-base.css` (y `css/09-tema-claro.css` para el día) |
+
+Paso a paso y sin jerga, en [`COMO-EDITAR.md`](COMO-EDITAR.md).
+
+Un plato **con descripción** se muestra como ficha y abre cartilla; uno **sin
+descripción** (guarniciones, bebidas) se muestra como línea de lista.
+
+Cuando cambie un precio, conviene copiar el mismo plato a la landing
+(`pachanka-landing-v3/contenido/carta.js`) para que las dos webs digan lo mismo.
 
 ## Tecnología
 

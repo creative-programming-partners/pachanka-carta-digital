@@ -1,0 +1,35 @@
+/* =========================================================
+   02 · MARCA Y BOTONES
+   Piezas que se repiten en toda la pagina: el logotipo de las ocho letras,
+   el boton pildora, la etiqueta en pincelada y los puntos de color.
+   ========================================================= */
+/* Logotipo */
+.wm{font-family:var(--f-mark);display:inline-flex;align-items:flex-end;line-height:.9;white-space:nowrap;user-select:none}
+.wm > span{display:inline-block;position:relative;color:var(--c);transform:translateY(var(--y,0)) rotate(var(--r,0deg))}
+.wm .spark{position:absolute;left:50%;top:-.34em;width:.5em;transform:translateX(-50%);color:var(--teal)}
+
+/* Botón píldora (los mismos de la landing) */
+.pill{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 26px;border-radius:999px;
+  background:transparent;color:var(--cream);border:1px solid var(--line-2);font-size:14.5px;font-weight:500;letter-spacing:.01em;white-space:nowrap;
+  transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .16s var(--ease-out)}
+.pill:hover{border-color:var(--gold-ink);color:var(--gold-ink)}
+.pill:active{transform:scale(.97)}
+/* Principal: píldora ámbar de dorado a naranja con texto carbón */
+.pill--accent{position:relative;isolation:isolate;background:linear-gradient(120deg,var(--gold) 0%,#d58a44 55%,var(--orange) 100%);
+  color:var(--on-gold);border:0;font-weight:600;padding:0 30px;box-shadow:0 8px 24px rgba(189,97,24,.28);transition:transform .16s var(--ease-out)}
+.pill--accent::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:rgba(255,246,230,.1);
+  box-shadow:0 10px 30px rgba(189,97,24,.22);opacity:0;transition:opacity .25s ease;pointer-events:none}
+.pill--accent:hover{color:var(--on-gold)}
+.pill--accent:hover::after{opacity:1}
+/* Cabecera: píldora oscura con borde dorado */
+.pill--hdr{height:40px;padding:0 22px;font-size:13.5px;background:rgba(var(--shade-rgb),.35);border-color:rgba(223,161,89,.6);color:var(--gold-ink)}
+.pill--hdr:hover{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+
+/* Etiqueta en pincelada de la carta impresa, en el dorado de la landing */
+.brush{display:inline-block;margin:0;padding:8px 26px 11px;font-family:var(--f-mark);font-weight:400;
+  font-size:clamp(22px,2.6vw,32px);line-height:1.1;letter-spacing:.02em;color:var(--on-gold);transform:rotate(-1.5deg);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 60' preserveAspectRatio='none'%3E%3Cpath d='M6 12 C50 5 96 10 150 6 S258 3 293 9 L284 19 L297 27 L287 37 L295 49 C236 55 182 49 120 53 S34 57 8 51 L15 41 L3 31 L13 22 Z' fill='%23DFA159'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+
+/* Puntos con los colores del logo (como en la portada de la landing) */
+.dots{display:inline-flex;gap:5px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--c)}
